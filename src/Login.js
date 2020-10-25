@@ -1,0 +1,20 @@
+import { Button } from "@material-ui/core";
+import { auth , provider } from "./firebase";
+import React from "react";
+import "./Login.css";
+
+function Login(){
+    const signIn = () =>{
+        auth.signInWithPopup(provider).catch((error) => alert(error.message));
+    };
+    return (
+    <div className="login">
+        <div className="login__logo">
+            <img src="data:image/png;base64,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" alt=""/>
+        </div>
+        <Button onClick={signIn}>Sign In</Button>
+    </div>
+    );
+}
+
+export default Login;
